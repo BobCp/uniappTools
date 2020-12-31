@@ -1,6 +1,6 @@
 <template>
 	<view v-if="showPopup" class="uni-popup" :class="[popupstyle]" @touchmove.stop.prevent="clear">
-		<uni-transition v-if="maskShow" :mode-class="['fade']" :styles="maskClass" :duration="duration" :show="showTrans" @click="onTap" />
+		<uni-transition v-if="maskShow" class="uni-mask--hook" :mode-class="['fade']" :styles="maskClass" :duration="duration" :show="showTrans" @click="onTap" />
 		<uni-transition :mode-class="ani" :styles="transClass" :duration="duration" :show="showTrans" @click="onTap">
 			<view class="uni-popup__wrapper-box" @click.stop="clear">
 				<slot />
@@ -71,8 +71,11 @@
 			 * 监听遮罩是否可点击
 			 * @param {Object} val
 			 */
-			maskClick(val) {
-				this.mkclick = val
+			maskClick: {
+				handler: function(val) {
+					this.mkclick = val
+				},
+				immediate: true
 			}
 		},
 		data() {
@@ -100,6 +103,7 @@
 			}
 		},
 		created() {
+			this.mkclick = this.maskClick
 			if (this.animation) {
 				this.duration = 300
 			} else {
@@ -204,6 +208,8 @@
 	}
 </script>
 <style scoped>
+	@charset "UTF-8";
+
 	.uni-popup {
 		position: fixed;
 		/* #ifndef APP-NVUE */
@@ -271,12 +277,9 @@
 	}
 
 	.content-ani {
-		/* transition: transform 0.3s;
- */
 		transition-property: transform, opacity;
 		transition-duration: 0.2s;
 	}
-
 
 	.uni-top-content {
 		transform: translateY(0);

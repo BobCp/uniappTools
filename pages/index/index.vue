@@ -1,6 +1,6 @@
 <template>
 	<view class="container">
-		<view class="intro">本项目已包含uni ui组件，无需import和注册，可直接使用。在代码区键入字母u，即可通过代码助手列出所有可用组件。光标置于组件名称处按F1，即可查看组件文档。</view>
+		<view class="intro">本项目已包含uni-app组件，无需import和注册，可直接使用。在代码区键入字母u，即可通过代码助手列出所有可用组件。光标置于组件名称处按F1，即可查看组件文档。</view>
 		<text class="intro">详见：</text>
 		<uni-link :href="href" :text="href"></uni-link>
 		<view style="padding: 100rpx;"></view>
@@ -14,7 +14,7 @@
 		data() {
 			return {
 				href: 'https://uniapp.dcloud.io/component/README?id=uniui',
-				nav:['/pages/component/component','/pages/tool/tool']
+				nav:['data=component','data=tool']
 			}
 		},
 		// 监听顶部状态按按钮
@@ -23,10 +23,18 @@
 		        url: '/pages/about/about'
 		    });
 		},
+		// 监听下拉刷新动画，on和stop需要配合使用
+		onPullDownRefresh() {
+			console.log('onPullDownRefresh');
+			setTimeout(() => {
+				// 重新请求数据
+				uni.stopPullDownRefresh();
+			},500)
+		},
 		methods: {
 			navigation(aim){
 				uni.navigateTo({
-				    url: aim
+				    url: '/pages/list/list?'+aim
 				});
 			}
 		}

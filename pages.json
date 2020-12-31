@@ -23,6 +23,11 @@
 				"navigationBarTitleText": "关于"
 			}
 		},{
+			"path": "pages/list/list",
+			"style": {
+				"navigationBarTitleText": "列表"
+			}
+		},{
 			"path": "pages/component/component",
 			"style": {
 				"navigationBarTitleText": "组件"
