@@ -43,7 +43,7 @@
 <script>
 	/*
 	* FeedBackCom 分享组件
-	* @description 分享组件
+	* @description 描述
 	* @value 	{Number}	maxImageList = 9					最大照片数，默认值为9	
 	* @value	{Array}		imageListOrigin = ["图片路径数组"]	初始由外部传入的照片文件的路径
 	* @value	{String}	inputMsgOrigin = 'String'	初始由外部传入的问题描述值	
