@@ -86,6 +86,7 @@ function aOSNotify(title = '', content = '', data = {}, channelID = '1', channel
 	var pendingIntent = PendingIntent.getActivity(main, notifyID, intent, PendingIntent.FLAG_CANCEL_CURRENT);  
 
 	//可能用到R的一些资源文件
+	var r = plus.android.importClass("android.R");
 	
 	var mNotification;
 	//判断当前系统版本在8.0及以上  
@@ -109,7 +110,8 @@ function aOSNotify(title = '', content = '', data = {}, channelID = '1', channel
 	//mNotification.setSubText('');        //子内容暂时去掉  
 	mNotification.setAutoCancel(true);       //设置点击消失  
 	mNotification.setShowWhen(true);       //显示通知时间，貌似不加这句也能显示   
-	mNotification.setSmallIcon(17301651);       //设置app通知小图标 
+	mNotification.setSmallIcon(r.drawable.stat_notify_chat);
+	//mNotification.setSmallIcon(17301543);       //设置app通知小图标,暂只能使用R.drawable文件中的默认值 
 	//mNotification.setDefaults(Notification.DEFAULT_VIBRATE);  //声音、闪灯、震动效果，可叠加，此语句无效
 	
 	mNotification.setTicker(title);       //设置发送到无障碍服务的“ ticker”文本。 
@@ -168,7 +170,13 @@ function aOSReceive() {
 		// nm.cancelAll();  
 
 		// 把消息数据置空，以免再次打开APP时重复执行此处  
-		intent.putExtra("receive", '');   
+		intent.putExtra("receive", '');  
+		 
+		//用message的数据做点什么
+		uni.showToast({
+			title: message.notify_id.toString(),
+			position:'bottom'
+		})
 	}  
 	// #endif  
 } 

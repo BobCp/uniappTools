@@ -1,4 +1,4 @@
-<template>
+<template name="FeedBackCom">
 	<view>
 		<!-- 问题描述 -->
 		<view v-if="showDesc==true">
@@ -46,17 +46,15 @@
 	* @description 分享组件
 	* @value 	{Number}	maxImageList = 9					最大照片数，默认值为9	
 	* @value	{Array}		imageListOrigin = ["图片路径数组"]	初始由外部传入的照片文件的路径
-	* @value	{Array}		imageList = ["图片路径数组"]	组件中的文件路径，选择后是缓存来的，如果用相机拍摄了并不会存在设备文件中，可传出
 	* @value	{String}	inputMsgOrigin = 'String'	初始由外部传入的问题描述值	
-	* @value	{String}	inputMsg = 'String'			问题描述块的文本，可传出
 	* @property	{Boolean}	showDesc = [true|false]		是否显示问题描述相关内容，默认值为true
 	* @property	{Boolean}	showSC = [true|false]		是否使用快速键入，默认值为true
 	* @value	{String} 	inputSCOrigin = ['快速输入的内容']	快速输入的内容，可由外部传入
 	* @property	{Boolean}	readOnly = [true|false]		是否显示问题描述是否只读，默认值为false
 	* @property {Boolean}	showPhoto = [true|false]	是否显示图片操作相关内容，默认值为true
 	* @property {Boolean}	showEdit = [true|false]		是否显示图片编辑相关操作，包含删除和添加相关内容，默认值为true
-	* @event {Function} 	inputMsg 					inputMsg 改变时触发事件
-	* @event {Function} 	imageList 					imageList 改变时时触发
+	* @event 	{Function} 	inputMsg 					inputMsg 改变时触发事件
+	* @event 	{Function} 	imageList 					imageList 改变时时触发
 	*/
 	
 export default {
