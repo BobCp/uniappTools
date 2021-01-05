@@ -9,9 +9,9 @@
 
 │  └─comp-a.vue         可复用的a组件 
 
-├─my_components     存放自定义组件的目录，[详见](https://uniapp.dcloud.io/component/web-view) 
+├─my_components     存放自定义组件的目录
 
-├─my_tools             存放自定义工具的目录，[详见](https://uniapp.dcloud.io/platform?id=整体目录条件编译) 
+├─my_utils             存放自定义工具的目录
 
 ├─pages                  业务页面文件存放的目录 
 
