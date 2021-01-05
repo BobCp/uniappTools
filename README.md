@@ -1,5 +1,5 @@
 # uniappTools
-基于uni-app添加一些“懒人”工具
+基于uni-app添加一些实用工具
 
 ## 目录结构
 
