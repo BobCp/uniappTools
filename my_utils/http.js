@@ -7,6 +7,7 @@ let http = {
 	// 'downloadFile': downloadFile
 }
 
+// 基础默认信息
 const config = {
     baseURL: '',
 	url:'',
@@ -18,7 +19,7 @@ const config = {
     responseType: 'text'
   }
 
-
+// Promise封装
 function request (options) {
 	return new Promise((resolve, reject) => {
 		uni.showLoading({

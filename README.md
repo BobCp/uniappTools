@@ -39,7 +39,7 @@
 
 ## 组件  /my_components/...
 
-> FeedBackCom/FeedBackCom.vue
+### FeedBackCom/FeedBackCom.vue
 
 ### 配置项列表
 
@@ -125,5 +125,48 @@
 
 ## 工具类  /my_utils/...
 
-> https.js
+### https.js
+
+可按照需求去修改 /my_utils/https.js 中的方法接收参数，实现需要的请求参数，注意：js是支持参数缺省的。
+
+### 全局注册
+
+在main.js中进行全局注册
+
+```javascript
+import http from 'common/myTools/http.js'
+Vue.prototype.$http = http
+```
+
+
+
+### 调用方法
+
+```vue
+<template>
+	<view>
+        ...
+	</view>
+</template>
+
+<script>
+	export default {
+        ...
+        onReady() {
+			this.getServerData();
+		},
+		methods:{
+			async getServerData() {
+				const res = await this.$http.get('https://unidemo.dcloud.net.cn/hello-uniapp-ucharts-data.json').then(res=>{
+					console.log(res.data);});				
+			},
+		},
+        ...
+    }
+</script>
+
+<style>
+	...
+</style>
+```
 
