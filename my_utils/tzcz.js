@@ -1,5 +1,5 @@
 /*
-	* Author: CP
+	* Author: BobCP
 	* 名称：tzcz
 	* 描述：基于uniapp的页面跳转API封装页面传值功能
 	* 参数：navtype：跳转类型；
