@@ -127,6 +127,18 @@
 
 ### https.js
 
+网络请求工具
+
+```javascript
+/**
+  * url: 请求地址，不包含baseURL，此处baseURL为空，详见/my_utils/.js中的 const config
+  * data: 请求的参数
+  * options: 只作为初始化参数用，如果传入参数，请使用与请求对应的键值对
+  */
+get (url, data, options = {}){...}
+post (url, data, options = {}){...}
+```
+
 可按照需求去修改 /my_utils/https.js 中的方法接收参数，实现需要的请求参数，注意：js是支持参数缺省的。
 
 ### 全局注册
@@ -137,8 +149,6 @@
 import http from 'common/myTools/http.js'
 Vue.prototype.$http = http
 ```
-
-
 
 ### 调用方法
 
@@ -168,5 +178,125 @@ Vue.prototype.$http = http
 <style>
 	...
 </style>
+```
+
+### tzcz.js
+
+跳转传值工具
+
+```javascript
+/**
+  * navtype：跳转类型；
+     值(String)：back --> 向前返回页面，pop --> 当前页面关闭（出栈）、向后跳转，next --> 向后跳转
+  * url：跳转目标；
+     值(String)：eg.'/pages/MWorkstation/CheckDetails/CheckDetails'
+     注：当navtype值为back时，url值应填写正整数表示向前退回的页面数 eg.基于当前页面输入为1则返回上一页面
+  * data：传的数据；
+     值：String类型，其它类型传值请进行转换
+     用encodeURIComponent()把字符串作为 URI 组件进行编码,接收方需用decodeURIComponent()解码一个编码的 URI 组件。
+  */
+tzcz(navtype, navurl, navdata){...}
+```
+
+### 全局注册
+
+在main.js中进行全局注册
+
+```javascript
+import tzcz from 'my_utils/tzcz.js'
+Vue.prototype.$tzcz = tzcz
+```
+
+### 调用方法
+
+示例为向后跳转，next --> 向后跳转
+
+firstpage.vue 传给 secondpage.vue
+
+firstpage.vue
+
+```vue
+<script>
+	export default {
+        data() {
+			return {
+				navUrl: "",	//跳转页面路径
+				navType: "",//跳转类型
+                navData: ""
+			};
+		},
+		methods:{
+			navData() {
+				this.$tzcz(this.navType,this.navUrl,this.navData);			
+			},
+		},
+        ...
+    }
+</script>
+```
+
+secondpage.vue
+
+```vue
+<script>
+	export default {
+        data() {
+			return {
+                Data: ""
+			};
+		},
+		onLoad(e){
+			this.Data = e.navData;
+            console.log(this.Data);
+		},
+        ...
+    }
+</script>
+```
+
+### myNJS.js
+
+通知栏工具
+
+在main.js中进行全局注册
+
+```javascript
+import myNJS from 'my_utils/myNJS.js'
+Vue.prototype.$myNJS = myNJS
+```
+
+在需要生成通知的逻辑中进行通知生成
+
+```javascript
+// aOSNotify(title = '', content = '', data = {}, channelID = '1', channelName = '自定义的通知')
+this.$myNJS.aOSNotify('通知来了', '这是一条自定义的提醒', {  
+	params1: 'params1',  
+	params2: 'params2',  
+	params3: 'params3',  
+	params4: 'params4'  
+});
+```
+
+在项目中App.vue的onShow中监听通知点击
+
+```vue
+<script>
+export default {
+	onLaunch: function() {
+		console.log('App Launch');
+	},
+	onShow: function() {
+		console.log('App Show');
+		// #ifdef APP-PLUS
+		// 通知点击动作触发意图
+        // aOSReceive()
+		this.$myNJS.aOSReceive();  
+		// #endif 
+	},
+	onHide: function() {
+		console.log('App Hide');
+	}
+};
+</script>
 ```
 
