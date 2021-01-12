@@ -6,6 +6,7 @@
 		<view style="padding: 100rpx;"></view>
 		<button type="default" @click="navigation(nav[0])">组件测试</button>
 		<button type="default" @click="navigation(nav[1])">工具测试</button>
+		<button type="default" @click="test">网络测试</button>
 	</view>
 </template>
 
@@ -36,6 +37,41 @@
 				uni.navigateTo({
 				    url: '/pages/list/list?'+aim
 				});
+			},
+			async getServerData() {
+				const res = await this.$http.get('/appfile/check',{version: "1.0.1",name: "哈哈"}).then(res=>{
+					console.log(res.data)})				
+			},
+			test(){
+				//plus.runtime.getProperty(plus.runtime.appid, function(widgetInfo) {
+					uni.showLoading({
+						title: "加载数据中..."
+					}),
+					uni.request({
+						//  https://unidemo.dcloud.net.cn/hello-uniapp-ucharts-data.json
+						url: 'http://127.0.0.1:3000/appfile/check', 
+						method:"GET",
+						data: {  
+							version: "1.0.1",  
+							name: "uni哈哈"  
+						},
+						success: (result) => {
+							var data = result.data;
+							console.log(data);
+						},
+						// 如果接口调用失败
+						fail: (err) => {
+							return uni.showToast({
+								title: 'X: ' + err
+							})
+							console.log(err);
+						},
+						complete: () => {
+							uni.hideLoading();
+						}
+					});
+				//});
+				this.getServerData();
 			}
 		}
 	}
