@@ -9,7 +9,7 @@ let http = {
 
 // 基础默认信息
 const config = {
-    baseURL: '',
+    baseURL: 'http://127.0.0.1:3000',
 	url:'',
     header: {
       //'content-type': 'application/json'
